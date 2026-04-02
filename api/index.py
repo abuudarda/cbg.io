@@ -83,7 +83,7 @@ def read_root():
 async def chat_endpoint(request: ChatRequest):
     client = OpenAI(
         base_url="https://integrate.api.nvidia.com/v1",
-        api_key=os.environ.get("NVIDIA_API_KEY")
+        api_key=os.environ.get("OPENAI_API_KEY")
     )
 
     def generate():
