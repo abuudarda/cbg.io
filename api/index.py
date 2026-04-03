@@ -114,13 +114,30 @@ async def chat_endpoint(request: ChatRequest):
             stream=True
         )
 
+        started_reasoning = False
+        finished_reasoning = False
+
         for chunk in completion:
             if not getattr(chunk, "choices", None):
                 continue
-            reasoning = getattr(chunk.choices[0].delta, "reasoning_content", None)
+            
+            delta = chunk.choices[0].delta
+            reasoning = getattr(delta, "reasoning_content", None)
+            content = getattr(delta, "content", None)
+
             if reasoning:
-                yield f"<think>{reasoning}</think>"
-            if chunk.choices and chunk.choices[0].delta.content is not None:
-                yield chunk.choices[0].delta.content
+                if not started_reasoning:
+                    yield "<think>\n"
+                    started_reasoning = True
+                yield reasoning
+            
+            if content is not None:
+                if started_reasoning and not finished_reasoning:
+                    yield "\n</think>\n"
+                    finished_reasoning = True
+                yield content
+                
+        if started_reasoning and not finished_reasoning:
+            yield "\n</think>\n"
 
     return StreamingResponse(generate(), media_type="text/event-stream")
