@@ -119,7 +119,7 @@ async def chat_endpoint(request: ChatRequest):
                 continue
             reasoning = getattr(chunk.choices[0].delta, "reasoning_content", None)
             if reasoning:
-                yield reasoning
+                yield f"<think>{reasoning}</think>"
             if chunk.choices and chunk.choices[0].delta.content is not None:
                 yield chunk.choices[0].delta.content
 
