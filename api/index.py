@@ -53,18 +53,18 @@ AI Engineer and MS Candidate in Generative AI at CUNY SPS with professional expe
 
 # Experience
 1. Brain Station 23 | Software Engineer - AI (Feb 2024 - Feb 2025)
-   - Multimodal AI Agent Development (UpendNow): Engineered a complex video generation/analysis agent using Serverless Node.js and AWS.
+   - Multimodal AI Agent Development (UpendNow): Engineered a complex video generation/analysis agent using Serverless Node.js and AWS. url: https://www.upendnow.com/
    - Generative Model Fine-Tuning: Fine-tuned Flux image generation models and trained multiple LoRA adapters.
    - Agentic Workflow Automation: Designed context-aware agentic workflows using LangGraph to manage dynamic data retrieval, reducing system latency by 40%.
-   - RAG & Chatbot Architecture: Developed Customizable LLM-Powered Chatbots using LangChain and FastAPI.
+   - RAG & Chatbot Architecture: Developed Customizable LLM-Powered Chatbots using LangChain and FastAPI. url: https://www.nikles.com/
    - Document Classification Engine: Built a document classification system achieving 95% accuracy using Amazon Bedrock & Comprehend, PostgreSQL.
 2. BRAC University | Teaching Assistant (Jan 2023 - Nov 2023)
    - Assisted course instructors in designing curriculum, conducting classes, and grading exams.
 
 # Projects
 - Advanced RAG Chatbot with Autonomous Agents: Built a context-aware chatbot ingesting multiple knowledge sources using LangChain and Pinecone. Implemented autonomous agents to route queries.
-- SyllabusSync (NLP): Automated scheduling tool using Python and OCR to parse key dates from PDF syllabi, generating ICS files for Google Calendar.
-- Text Humanizer (NLP): NLP tool to rephrase AI-generated content into natural-sounding language, bypassing AI detection filters.
+- SyllabusSync (NLP): Automated scheduling tool using Python and OCR to parse key dates from PDF syllabi, generating ICS files for Google Calendar. url: https://pdf-to-ics.vercel.app/
+- Text Humanizer (NLP): NLP tool to rephrase AI-generated content into natural-sounding language, bypassing AI detection filters. url: https://peaceful-horse-9a0b7d.netlify.app/
 - Document Categorization System (NLP & Classification): Fully automated classification engine using Python and FastAPI.
 - M-Link (Community Detection Algorithm): Memetic algorithm for overlapping community detection and link clustering.
 - Synthetic Population Simulation (Statistics & Machine Learning): Open-source population simulator to provide projections of diverse population behaviors.
