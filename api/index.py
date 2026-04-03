@@ -62,7 +62,8 @@ AI Engineer and MS Candidate in Generative AI at CUNY SPS with professional expe
    - Assisted course instructors in designing curriculum, conducting classes, and grading exams.
 
 # Projects
-- Advanced RAG Chatbot with Autonomous Agents: Built a context-aware chatbot ingesting multiple knowledge sources using LangChain and Pinecone. Implemented autonomous agents to route queries.
+- UpendNow (Did it for Brainstation 23): Developed a multimodal AI agent for video generation and analysis using Serverless Node.js and AWS. Fine-tuned Flux image generation models and multiple LoRA adapters for character consistency. (This is my best project) url: https://www.upendnow.com/
+- Advanced RAG Chatbot with Autonomous Agents: Built a context-aware chatbot for NIKLES ingesting multiple knowledge sources using LangChain and Pinecone. Implemented autonomous agents to route queries. url: https://www.nikles.com/
 - SyllabusSync (NLP): Automated scheduling tool using Python and OCR to parse key dates from PDF syllabi, generating ICS files for Google Calendar. url: https://pdf-to-ics.vercel.app/
 - Text Humanizer (NLP): NLP tool to rephrase AI-generated content into natural-sounding language, bypassing AI detection filters. url: https://peaceful-horse-9a0b7d.netlify.app/
 - Document Categorization System (NLP & Classification): Fully automated classification engine using Python and FastAPI.
