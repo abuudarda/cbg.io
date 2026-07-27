@@ -97,7 +97,7 @@ def read_root():
 async def chat_endpoint(request: ChatRequest):
     client = OpenAI(
         base_url="https://integrate.api.nvidia.com/v1",
-        api_key=os.environ.get("OPENAI_API_KEY")
+        api_key=os.environ.get("NVIDIA_API_KEY")
     )
 
     # Build the messages array with the system prompt followed by the conversation history
@@ -107,12 +107,13 @@ async def chat_endpoint(request: ChatRequest):
 
     def generate():
         completion = client.chat.completions.create(
-            model="openai/gpt-oss-120b",
+            model="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
             messages=api_messages,
-            temperature=1,
-            top_p=1,
-            max_tokens=4096,
-            stream=True
+            temperature=0.6,
+            top_p=0.95,
+            max_tokens=65536,
+            stream=True,
+            extra_body={"reasoning_budget": 16384}
         )
 
         started_reasoning = False
