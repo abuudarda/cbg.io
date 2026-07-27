@@ -4,9 +4,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from openai import OpenAI
-from dotenv import load_dotenv
-load_dotenv()
+from langchain_nvidia_ai_endpoints import ChatNVIDIA
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
+import dotenv
+
+dotenv.load_dotenv()
+
 app = FastAPI()
 
 app.add_middleware(
@@ -95,37 +98,31 @@ def read_root():
 
 @app.post("/api/chat")
 async def chat_endpoint(request: ChatRequest):
-    client = OpenAI(
-        base_url="https://integrate.api.nvidia.com/v1",
-        api_key=os.environ.get("NVIDIA_API_KEY")
+    client = ChatNVIDIA(
+        model="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        api_key=os.environ.get("NVIDIA_API_KEY"),
+        temperature=0.6,
+        top_p=0.95,
+        max_completion_tokens=65536
     )
 
     # Build the messages array with the system prompt followed by the conversation history
-    api_messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    api_messages = [SystemMessage(content=SYSTEM_PROMPT)]
     for msg in request.messages:
-        api_messages.append({"role": msg.role, "content": msg.content})
+        if msg.role == "user":
+            api_messages.append(HumanMessage(content=msg.content))
+        elif msg.role == "assistant":
+            api_messages.append(AIMessage(content=msg.content))
+        else:
+            api_messages.append(SystemMessage(content=msg.content))
 
     def generate():
-        completion = client.chat.completions.create(
-            model="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
-            messages=api_messages,
-            temperature=0.6,
-            top_p=0.95,
-            max_tokens=65536,
-            stream=True,
-            extra_body={"reasoning_budget": 16384}
-        )
-
         started_reasoning = False
         finished_reasoning = False
 
-        for chunk in completion:
-            if not getattr(chunk, "choices", None):
-                continue
-            
-            delta = chunk.choices[0].delta
-            reasoning = getattr(delta, "reasoning_content", None)
-            content = getattr(delta, "content", None)
+        for chunk in client.stream(api_messages):
+            reasoning = chunk.additional_kwargs.get("reasoning_content", "")
+            content = chunk.content
 
             if reasoning:
                 if not started_reasoning:
@@ -133,7 +130,7 @@ async def chat_endpoint(request: ChatRequest):
                     started_reasoning = True
                 yield reasoning
             
-            if content is not None:
+            if content:
                 if started_reasoning and not finished_reasoning:
                     yield "\n</think>\n"
                     finished_reasoning = True
