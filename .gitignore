@@ -7,3 +7,4 @@ coverage/
 .env*
 !.env.example
 *.pyc
+api/__pycache__/index.cpython-313.pyc

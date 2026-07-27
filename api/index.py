@@ -6,9 +6,9 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
-import dotenv
 
-dotenv.load_dotenv()
+# import dotenv
+# dotenv.load_dotenv()
 
 app = FastAPI()
 
