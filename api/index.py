@@ -103,7 +103,7 @@ def read_root():
 @app.post("/api/chat")
 async def chat_endpoint(request: ChatRequest):
     client = ChatNVIDIA(
-        model="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        model="mistralai/mistral-nemotron",
         api_key=os.environ.get("NVIDIA_API_KEY"),
         temperature=0.6,
         top_p=0.95,
