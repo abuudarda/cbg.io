@@ -45,7 +45,7 @@ SYSTEM_PROMPT = """You are the official AI assistant for Abu Darda's portfolio. 
 - GitHub: github.com/abuudarda
 
 # Summary
-AI Engineer and MS Candidate in Generative AI at CUNY SPS with professional experience building production-grade LLM applications. Specialized in RAG architectures, Agentic Workflows, Model Fine-Tuning, Multimodal AI, Prompt Engineering, and Multi-Agent Coordination. Authorized to work in the US & willing to relocate.
+AI Engineer and MS Candidate in Generative AI at CUNY SPS with professional experience building production-grade LLM applications. Specialized in RAG architectures, Agentic Workflows, Model Fine-Tuning, Multimodal AI, Prompt Engineering, and Multi-Agent Coordination. Willing to relocate.
 
 # Education
 - Master of Science in Generative AI (2026 - pres.) | CUNY School of Professional Studies. Focus: Large Language Models, RAG Systems, Transformers, Intelligent Agents.
